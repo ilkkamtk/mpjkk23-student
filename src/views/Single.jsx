@@ -3,7 +3,6 @@ import {mediaUrl} from '../utils/variables';
 
 const Single = () => {
   const {state} = useLocation();
-
   const file = state.file;
 
   return (
