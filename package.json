@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=./~ilkkamtk/mpjakk23/navigation",
+    "build": "vite build --base=/~ilkkamtk/mpjakk23/navigation/",
     "preview": "vite preview"
   },
   "dependencies": {
