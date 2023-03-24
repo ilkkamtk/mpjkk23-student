@@ -21,6 +21,8 @@ const RegisterForm = (props) => {
     }
   };
 
+  const handleUsername = async () => {};
+
   const {inputs, handleSubmit, handleInputChange} = useForm(
     doRegister,
     initValues
@@ -34,6 +36,7 @@ const RegisterForm = (props) => {
           placeholder="Username"
           onChange={handleInputChange}
           value={inputs.username}
+          onBlur={handleUsername}
         />
         <input
           name="password"

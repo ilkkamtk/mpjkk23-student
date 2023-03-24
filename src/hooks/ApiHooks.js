@@ -62,7 +62,9 @@ const useUser = () => {
     return await doFetch(baseUrl + 'users/user', options);
   };
 
-  return {postUser, getUserByToken};
+  const getCheckUser = async (username) => {};
+
+  return {postUser, getUserByToken, getCheckUser};
 };
 
 const useAuthentication = () => {
