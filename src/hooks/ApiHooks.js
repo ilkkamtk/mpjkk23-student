@@ -42,15 +42,14 @@ const useMedia = () => {
 
 const useUser = () => {
   const postUser = async (inputs) => {
-    try {
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(inputs),
-      };
-      await doFetch(baseUrl + 'users', options);
-    } catch (error) {
-      console.error(error.message);
-    }
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    return await doFetch(baseUrl + 'users', options);
   };
   return {postUser};
 };
