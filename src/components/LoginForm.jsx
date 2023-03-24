@@ -15,7 +15,6 @@ const LoginForm = (props) => {
   const doLogin = async () => {
     try {
       const loginResult = await postLogin(inputs);
-      alert(loginResult.message);
       localStorage.setItem('userToken', loginResult.token);
       navigate('/home');
     } catch (error) {
