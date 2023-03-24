@@ -54,4 +54,18 @@ const useUser = () => {
   return {postUser};
 };
 
-export {useMedia, useUser};
+const useAuthentication = () => {
+  const postLogin = async (inputs) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    return await doFetch(baseUrl + 'login', options);
+  };
+  return {postLogin};
+};
+
+export {useMedia, useUser, useAuthentication};
