@@ -3,7 +3,7 @@ import useForm from '../hooks/FormHooks';
 import {useUser} from '../hooks/ApiHooks';
 
 const RegisterForm = (props) => {
-  const {postUser} = useUser();
+  const {postUser, getCheckUser} = useUser();
 
   const initValues = {
     username: '',
@@ -21,7 +21,10 @@ const RegisterForm = (props) => {
     }
   };
 
-  const handleUsername = async () => {};
+  const handleUsername = async () => {
+    const {available} = await getCheckUser(inputs.username);
+    available || alert('Username not available');
+  };
 
   const {inputs, handleSubmit, handleInputChange} = useForm(
     doRegister,
