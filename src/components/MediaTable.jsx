@@ -1,3 +1,4 @@
+import {ImageList} from '@mui/material';
 import PropTypes from 'prop-types';
 import {useEffect, useState} from 'react';
 import {useMedia} from '../hooks/apiHooks';
@@ -8,13 +9,11 @@ const MediaTable = () => {
   const {mediaArray} = useMedia();
 
   return (
-    <table>
-      <tbody>
-        {mediaArray.map((item, index) => {
-          return <MediaRow key={index} file={item} />;
-        })}
-      </tbody>
-    </table>
+    <ImageList>
+      {mediaArray.map((item, index) => {
+        return <MediaRow key={index} file={item} />;
+      })}
+    </ImageList>
   );
 };
 

@@ -1,3 +1,4 @@
+import {Button, Grid, TextField} from '@mui/material';
 import PropTypes from 'prop-types';
 import {useNavigate} from 'react-router-dom';
 import {useAuthentication} from '../hooks/apiHooks';
@@ -28,24 +29,38 @@ const LoginForm = (props) => {
   );
 
   return (
-    <>
+    <Grid item xs={6}>
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
+          fullWidth
+          label="username"
           name="username"
           placeholder="Username"
           onChange={handleInputChange}
           value={inputs.username}
+          margin="dense"
         />
-        <input
+        <TextField
+          fullWidth
+          label="password"
           name="password"
           type="password"
           placeholder="Password"
           onChange={handleInputChange}
           value={inputs.password}
+          margin="dense"
         />
-        <button type="submit">Login</button>
+        <Button
+          sx={{mt: 1}}
+          fullWidth
+          color="primary"
+          type="submit"
+          variant="outlined"
+        >
+          Login
+        </Button>
       </form>
-    </>
+    </Grid>
   );
 };
 
