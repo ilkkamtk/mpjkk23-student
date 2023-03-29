@@ -16,16 +16,16 @@ const Login = (props) => {
       justifyContent="center"
       direction="column"
     >
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <Typography component="h1" variant="h2" gutterBottom>
           {formToggle ? 'Login' : 'Register'}
         </Typography>
       </Grid>
       {formToggle ? <LoginForm /> : <RegisterForm />}
-      <Grid xs={6}>
+      <Grid item xs={6}>
         <p>{formToggle ? 'First time here?' : 'Already registered?'}</p>
       </Grid>
-      <Grid xs={6}>
+      <Grid item xs={6}>
         <Button variant="plain" fullWidth onClick={toggle}>
           {formToggle ? 'Register here' : 'Login here'}
         </Button>
