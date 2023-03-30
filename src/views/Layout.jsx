@@ -4,7 +4,7 @@ import {MediaContext} from '../contexts/MediaContext';
 import {useUser} from '../hooks/apiHooks';
 
 const Layout = () => {
-  const [user, setUser] = useContext(MediaContext);
+  const {setUser} = useContext(MediaContext);
   const {getUserByToken} = useUser();
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,7 +16,6 @@ const Layout = () => {
       const user = await getUserByToken(userToken);
       if (user) {
         setUser(user);
-        console.log('Layout', user);
         const target = location.pathname === '/' ? '/home' : location.pathname;
         navigate(target);
         return;
