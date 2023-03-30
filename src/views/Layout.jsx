@@ -1,8 +1,10 @@
-import {useEffect} from 'react';
+import {useContext, useEffect} from 'react';
 import {Link, Outlet, useLocation, useNavigate} from 'react-router-dom';
+import {MediaContext} from '../contexts/MediaContext';
 import {useUser} from '../hooks/apiHooks';
 
 const Layout = () => {
+  const [user, setUser] = useContext(MediaContext);
   const {getUserByToken} = useUser();
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,6 +15,8 @@ const Layout = () => {
       console.log(userToken);
       const user = await getUserByToken(userToken);
       if (user) {
+        setUser(user);
+        console.log('Layout', user);
         const target = location.pathname === '/' ? '/home' : location.pathname;
         navigate(target);
         return;
