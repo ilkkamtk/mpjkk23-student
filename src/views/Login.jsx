@@ -11,18 +11,18 @@ const Login = (props) => {
   };
   return (
     <Grid container direction="column" alignItems="center">
-      <Grid item xs={6}>
+      <Grid item>
         <Typography component="h1" variant="h3">
-          Login/Register
+          {formToggle ? 'Login' : 'Register'}
         </Typography>
       </Grid>
-      <Grid item xs={6}>
-        {formToggle ? <LoginForm /> : <RegisterForm />}
+      <Grid item>{formToggle ? <LoginForm /> : <RegisterForm />}</Grid>
+      <Grid item>
+        <Typography variant="body2" sx={{mt: 2}}>
+          {formToggle ? 'First time here?' : 'Already registered?'}
+        </Typography>
       </Grid>
-      <Grid item xs={6}>
-        <p>{formToggle ? 'First time here?' : 'or'}</p>
-      </Grid>
-      <Grid item xs={6}>
+      <Grid item>
         <Button onClick={toggle}>{formToggle ? 'Register' : 'Login'}</Button>
       </Grid>
     </Grid>

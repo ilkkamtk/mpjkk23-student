@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import useForm from '../hooks/FormHooks';
 import {useUser} from '../hooks/ApiHooks';
+import {Box, Button, Grid, TextField} from '@mui/material';
+import {Container} from '@mui/system';
 
 const RegisterForm = (props) => {
   const {postUser, getCheckUser} = useUser();
@@ -32,38 +34,47 @@ const RegisterForm = (props) => {
   );
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
+    <Container maxWidth="xs">
+      <Box component="form" onSubmit={handleSubmit}>
+        <TextField
+          fullWidth
+          margin="dense"
           name="username"
-          placeholder="Username"
+          label="Username"
           onChange={handleInputChange}
           value={inputs.username}
-          onBlur={handleUsername}
         />
-        <input
+        <TextField
+          fullWidth
+          margin="dense"
           name="password"
           type="password"
-          placeholder="Password"
+          label="Password"
           onChange={handleInputChange}
           value={inputs.password}
         />
-        <input
+        <TextField
+          fullWidth
+          margin="dense"
           name="email"
           type="email"
-          placeholder="Email"
+          label="Email"
           onChange={handleInputChange}
           value={inputs.email}
         />
-        <input
+        <TextField
+          fullWidth
+          margin="dense"
           name="full_name"
-          placeholder="Full name"
+          label="Full name"
           onChange={handleInputChange}
           value={inputs.full_name}
         />
-        <button type="submit">Register</button>
-      </form>
-    </>
+        <Button fullWidth sx={{mt: 1}} variant="contained" type="submit">
+          Register
+        </Button>
+      </Box>
+    </Container>
   );
 };
 

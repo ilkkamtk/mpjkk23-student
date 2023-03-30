@@ -83,4 +83,17 @@ const useAuthentication = () => {
   return {postLogin};
 };
 
-export {useMedia, useUser, useAuthentication};
+const useTag = () => {
+  const getTag = async (tag) => {
+    const tagResult = await doFetch(baseUrl + 'tags/' + tag);
+    if (tagResult.length > 0) {
+      return tagResult;
+    } else {
+      throw new Error('Tag not found');
+    }
+  };
+
+  return {getTag};
+};
+
+export {useMedia, useUser, useAuthentication, useTag};
