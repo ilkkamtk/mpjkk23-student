@@ -47,7 +47,7 @@ const Profile = () => {
               <ListItemAvatar sx={{width: '100%'}}>
                 <Avatar
                   variant="square"
-                  src={avatar ? avatar.filename : 'https://placekitten.com/320'}
+                  src={avatar.filename}
                   imgProps={{
                     alt: `${user.username}'s profile image`,
                   }}
