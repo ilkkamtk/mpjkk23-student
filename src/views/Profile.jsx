@@ -73,6 +73,12 @@ const Profile = () => {
               </ListItemIcon>
               <ListItemText primary={user.full_name} />
             </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <Badge />
+              </ListItemIcon>
+              <ListItemText primary={user.user_id} />
+            </ListItem>
           </List>
         </CardContent>
       )}
