@@ -3,6 +3,9 @@ import useForm from '../hooks/FormHooks';
 import {useUser} from '../hooks/ApiHooks';
 import {Box, Button, Grid, TextField} from '@mui/material';
 import {Container} from '@mui/system';
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {registerForm} from '../utils/errorMessages';
+import {registerValidators} from '../utils/validators';
 
 const RegisterForm = (props) => {
   const {postUser, getCheckUser} = useUser();
@@ -35,16 +38,19 @@ const RegisterForm = (props) => {
 
   return (
     <Container maxWidth="xs">
-      <Box component="form" onSubmit={handleSubmit}>
-        <TextField
+      <ValidatorForm onSubmit={handleSubmit} noValidate>
+        <TextValidator
           fullWidth
           margin="dense"
           name="username"
           label="Username"
           onChange={handleInputChange}
           value={inputs.username}
+          onBlur={handleUsername}
+          validators={registerValidators.username}
+          errorMessages={registerForm.username}
         />
-        <TextField
+        <TextValidator
           fullWidth
           margin="dense"
           name="password"
@@ -52,8 +58,10 @@ const RegisterForm = (props) => {
           label="Password"
           onChange={handleInputChange}
           value={inputs.password}
+          validators={registerValidators.password}
+          errorMessages={registerForm.password}
         />
-        <TextField
+        <TextValidator
           fullWidth
           margin="dense"
           name="email"
@@ -61,19 +69,23 @@ const RegisterForm = (props) => {
           label="Email"
           onChange={handleInputChange}
           value={inputs.email}
+          validators={registerValidators.email}
+          errorMessages={registerForm.email}
         />
-        <TextField
+        <TextValidator
           fullWidth
           margin="dense"
           name="full_name"
           label="Full name"
           onChange={handleInputChange}
           value={inputs.full_name}
+          validators={registerValidators.full_name}
+          errorMessages={registerForm.full_name}
         />
         <Button fullWidth sx={{mt: 1}} variant="contained" type="submit">
           Register
         </Button>
-      </Box>
+      </ValidatorForm>
     </Container>
   );
 };
