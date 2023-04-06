@@ -61,7 +61,7 @@ const Upload = (props) => {
     reader.addEventListener('load', () => {
       setSelectedImage(reader.result);
     });
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(event.target.files[0]);
   };
 
   const {inputs, handleSubmit, handleInputChange} = useForm(
@@ -74,7 +74,7 @@ const Upload = (props) => {
     filterInitValues
   );
 
-  console.log('Upload', inputs, filterInputs);
+  console.log('Upload', file);
 
   return (
     <Box>
