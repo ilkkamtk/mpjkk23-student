@@ -9,8 +9,9 @@ import {useMedia, useTag} from '../hooks/ApiHooks';
 const Upload = (props) => {
   const [file, setFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(
-    'https://placehold.co/600x400?text=Choose-media'
+    'https://placekitten.com/600/400'
   );
+  // 'https://placehold.co/600x400?text=Choose-media'
   const {postMedia} = useMedia();
   const {postTag} = useTag();
   const navigate = useNavigate();
@@ -18,6 +19,13 @@ const Upload = (props) => {
   const initValues = {
     title: '',
     description: '',
+  };
+
+  const filterInitValues = {
+    brightness: 50,
+    contrast: 50,
+    saturation: 50,
+    sepia: 50,
   };
 
   const doUpload = async () => {
@@ -57,11 +65,24 @@ const Upload = (props) => {
     initValues
   );
 
-  //console.log('Upload', inputs, file);
+  const {inputs: filterInputs, handleInputChange: handleFilterChange} = useForm(
+    null,
+    filterInitValues
+  );
+
+  console.log('Upload', inputs, filterInputs);
 
   return (
     <Box>
-      <img src={selectedImage} alt="preview" />
+      <img
+        src={selectedImage}
+        alt="preview"
+        style={{
+          width: 300,
+          height: 200,
+          filter: `brightness(${filterInputs.brightness}%)`,
+        }}
+      />
       <form onSubmit={handleSubmit}>
         <input
           onChange={handleInputChange}
@@ -88,6 +109,8 @@ const Upload = (props) => {
         max={100}
         step={1}
         valueLabelDisplay="auto"
+        onChange={handleFilterChange}
+        value={filterInputs.brightness}
       />
       <Slider
         name="contrast"
@@ -95,6 +118,8 @@ const Upload = (props) => {
         max={100}
         step={1}
         valueLabelDisplay="auto"
+        onChange={handleFilterChange}
+        value={filterInputs.contrast}
       />
       <Slider
         name="saturation"
@@ -102,6 +127,8 @@ const Upload = (props) => {
         max={100}
         step={1}
         valueLabelDisplay="auto"
+        onChange={handleFilterChange}
+        value={filterInputs.saturation}
       />
       <Slider
         name="sepia"
@@ -109,6 +136,8 @@ const Upload = (props) => {
         max={100}
         step={1}
         valueLabelDisplay="auto"
+        onChange={handleFilterChange}
+        value={filterInputs.sepia}
       />
     </Box>
   );
