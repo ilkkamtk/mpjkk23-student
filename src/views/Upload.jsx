@@ -82,8 +82,9 @@ const Upload = (props) => {
         src={selectedImage}
         alt="preview"
         style={{
-          width: 300,
-          height: 200,
+          width: '100%',
+          height: 400,
+          objectFit: 'contain',
           filter: `
           brightness(${filterInputs.brightness}%)
           contrast(${filterInputs.contrast}%)
