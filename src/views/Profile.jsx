@@ -13,7 +13,6 @@ import {useContext, useEffect, useState} from 'react';
 import {MediaContext} from '../contexts/MediaContext';
 import {useTag} from '../hooks/ApiHooks';
 import {mediaUrl} from '../utils/variables';
-import {Link} from 'react-router-dom';
 
 const Profile = () => {
   const {user} = useContext(MediaContext);

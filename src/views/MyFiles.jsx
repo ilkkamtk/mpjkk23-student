@@ -1,10 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Typography} from '@mui/material';
+import MediaTable from '../components/MediaTable';
 
-const MyFiles = (props) => {
-  return <div>MyFiles</div>;
+const MyFiles = () => {
+  return (
+    <>
+      <Typography component="h1" variant="h3">
+        My Files
+      </Typography>
+      <MediaTable myFilesOnly={true} />
+    </>
+  );
 };
-
-MyFiles.propTypes = {};
 
 export default MyFiles;
