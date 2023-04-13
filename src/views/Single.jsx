@@ -16,7 +16,18 @@ const Single = () => {
   };
   try {
     allData = JSON.parse(file.description);
-  } catch (error) {}
+  } catch (error) {
+    /* empty */
+  }
+  let componentType = 'img';
+  switch (file.media_type) {
+    case 'video':
+      componentType = 'video';
+      break;
+    case 'audio':
+      componentType = 'audio';
+      break;
+  }
 
   return (
     <>
@@ -24,8 +35,15 @@ const Single = () => {
         {file.title}
       </Typography>
       <Card>
+        {/*
+        toinen tapa
+        {file.media_type === 'image' && <img src="" alt="" />}
+        {file.media_type === 'video' && <video src="" />}
+        {file.media_type === 'audio' && <audio src="" />}
+        */}
+
         <CardMedia
-          component={'img'}
+          component={componentType}
           src={mediaUrl + file.filename}
           title={file.title}
           style={{
