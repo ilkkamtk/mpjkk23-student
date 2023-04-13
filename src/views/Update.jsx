@@ -45,7 +45,7 @@ const Update = (props) => {
         description: allData,
       };
       const userToken = localStorage.getItem('userToken');
-      const updateResult = await putMedia(data, userToken);
+      const updateResult = await putMedia(file.file_id, data, userToken);
       console.log('doUpdate', updateResult);
       navigate('/home');
     } catch (error) {
