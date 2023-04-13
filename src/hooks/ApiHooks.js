@@ -14,7 +14,7 @@ const doFetch = async (url, options) => {
   return json;
 };
 
-const useMedia = (myFilesOnly) => {
+const useMedia = (myFilesOnly = false) => {
   const [mediaArray, setMediaArray] = useState([]);
   const {user} = useContext(MediaContext);
   const getMedia = async () => {
@@ -22,9 +22,7 @@ const useMedia = (myFilesOnly) => {
       let files = await useTag().getTag(appId);
 
       if (myFilesOnly) {
-        files = files.filter((file) => {
-          return file.user_id === user.user_id;
-        });
+        files = files.filter((file) => file.user_id === user.user_id);
       }
 
       const filesWithThumbnail = await Promise.all(
@@ -57,7 +55,17 @@ const useMedia = (myFilesOnly) => {
     return await doFetch(baseUrl + 'media', options);
   };
 
-  return {mediaArray, postMedia};
+  const deleteMedia = async (id, token) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'x-access-token': token,
+      },
+    };
+    return await doFetch(baseUrl + 'media/' + id, options);
+  };
+
+  return {mediaArray, postMedia, deleteMedia};
 };
 
 const useUser = () => {
