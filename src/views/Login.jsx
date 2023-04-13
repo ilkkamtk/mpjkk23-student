@@ -1,10 +1,9 @@
 import {Button, Grid, Typography} from '@mui/material';
-import PropTypes from 'prop-types';
 import {useState} from 'react';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 
-const Login = (props) => {
+const Login = () => {
   const [formToggle, setFormToggle] = useState(true);
   const toggle = () => {
     setFormToggle(!formToggle);
@@ -30,7 +29,5 @@ const Login = (props) => {
     </Grid>
   );
 };
-
-Login.propTypes = {};
 
 export default Login;

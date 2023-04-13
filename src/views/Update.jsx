@@ -4,7 +4,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
 import {useMedia} from '../hooks/ApiHooks';
 
-const Update = (props) => {
+const Update = () => {
   const {putMedia} = useMedia();
   const navigate = useNavigate();
   const {state} = useLocation();
@@ -133,7 +133,5 @@ const Update = (props) => {
     </Box>
   );
 };
-
-Update.propTypes = {};
 
 export default Update;
