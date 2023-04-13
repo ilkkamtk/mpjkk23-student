@@ -6,7 +6,14 @@ import {mediaUrl} from '../utils/variables';
 const MediaRow = ({file}) => {
   return (
     <ImageListItem>
-      <img src={mediaUrl + file.thumbnails.w640} alt={file.title} />
+      <img
+        src={
+          file.media_type !== 'audio'
+            ? mediaUrl + file.thumbnails.w640
+            : '/vite.svg'
+        }
+        alt={file.title}
+      />
       <ImageListItemBar
         title={file.title}
         subtitle={file.description}
