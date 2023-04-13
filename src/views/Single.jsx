@@ -43,6 +43,8 @@ const Single = () => {
         */}
 
         <CardMedia
+          controls={true}
+          poster={mediaUrl + file.screenshot}
           component={componentType}
           src={mediaUrl + file.filename}
           title={file.title}
