@@ -172,7 +172,7 @@ const useFavourite = () => {
     return await doFetch(baseUrl + 'favourites', fetchOptions);
   };
 
-  const getFavourite = async (id) => {
+  const getFavourites = async (id) => {
     return await doFetch(baseUrl + 'favourites/file/' + id);
   };
 
@@ -186,7 +186,7 @@ const useFavourite = () => {
     return await doFetch(baseUrl + 'favourites/file/' + id, options);
   };
 
-  return {postFavourite, getFavourite, deleteFavourite};
+  return {postFavourite, getFavourites, deleteFavourite};
 };
 
 export {useMedia, useUser, useAuthentication, useTag, useFavourite};

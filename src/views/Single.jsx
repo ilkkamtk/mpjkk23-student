@@ -8,27 +8,14 @@ import {
 } from '@mui/material';
 import {useLocation} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
-import {useUser} from '../hooks/ApiHooks';
+import {useFavourite, useUser} from '../hooks/ApiHooks';
 import {useEffect, useState} from 'react';
 
 const Single = () => {
   const [owner, setOwner] = useState({username: ''});
 
   const {getUser} = useUser();
-
-  const fetchUser = async () => {
-    try {
-      const token = localStorage.getItem('userToken');
-      const onwerInfo = await getUser(file.user_id, token);
-      setOwner(onwerInfo);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  const {getFavourites} = useFavourite();
 
   const {state} = useLocation();
   const file = state.file;
@@ -55,6 +42,30 @@ const Single = () => {
       componentType = 'audio';
       break;
   }
+
+  const fetchUser = async () => {
+    try {
+      const token = localStorage.getItem('userToken');
+      const onwerInfo = await getUser(file.user_id, token);
+      setOwner(onwerInfo);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const fetchLikes = async () => {
+    try {
+      const likeInfo = await getFavourites(file.file_id);
+      console.log(likeInfo);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+    fetchLikes();
+  }, []);
 
   return (
     <>
