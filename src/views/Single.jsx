@@ -127,7 +127,7 @@ const Single = () => {
           <Typography variant="body2">Likes: {likes}</Typography>
           <ButtonGroup>
             <Button onClick={doLike}>Like</Button>
-            <Button onClick={deleteFavourite}>Dislike</Button>
+            <Button onClick={deleteLike}>Dislike</Button>
           </ButtonGroup>
         </CardContent>
       </Card>
