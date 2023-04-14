@@ -76,6 +76,7 @@ const Single = () => {
       const data = {file_id: file.file_id};
       const likeInfo = await postFavourite(data, token);
       console.log(likeInfo);
+      setUserLike(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -86,6 +87,7 @@ const Single = () => {
       const token = localStorage.getItem('userToken');
       const likeInfo = await deleteFavourite(file.file_id, token);
       console.log(likeInfo);
+      setUserLike(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -93,8 +95,11 @@ const Single = () => {
 
   useEffect(() => {
     fetchUser();
-    fetchLikes();
   }, []);
+
+  useEffect(() => {
+    fetchLikes();
+  }, [userLike]);
 
   return (
     <>
