@@ -11,7 +11,7 @@ import {useContext} from 'react';
 import {MediaContext} from '../contexts/MediaContext';
 
 const MediaRow = ({file, deleteMedia}) => {
-  const {user} = useContext(MediaContext);
+  const {user, update, setUpdate} = useContext(MediaContext);
 
   const doDelete = async () => {
     const sure = confirm('Are you sure?');
@@ -19,6 +19,7 @@ const MediaRow = ({file, deleteMedia}) => {
       const token = localStorage.getItem('userToken');
       const deleteResult = await deleteMedia(file.file_id, token);
       console.log(deleteResult);
+      setUpdate(!update);
     }
   };
 

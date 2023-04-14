@@ -1,4 +1,11 @@
-import {Card, CardContent, CardMedia, Typography} from '@mui/material';
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material';
 import {useLocation} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
 import {useUser} from '../hooks/ApiHooks';
@@ -83,6 +90,11 @@ const Single = () => {
         <CardContent>
           <Typography variant="body1">{allData.desc}</Typography>
           <Typography variant="body2">By: {owner.username}</Typography>
+          <Typography variant="body2">Likes: 34</Typography>
+          <ButtonGroup>
+            <Button>Like</Button>
+            <Button disabled={true}>Dislike</Button>
+          </ButtonGroup>
         </CardContent>
       </Card>
     </>
