@@ -7,12 +7,10 @@ import {
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
-import {useMedia} from '../hooks/ApiHooks';
 import {useContext} from 'react';
 import {MediaContext} from '../contexts/MediaContext';
 
-const MediaRow = ({file}) => {
-  const {deleteMedia} = useMedia();
+const MediaRow = ({file, deleteMedia}) => {
   const {user} = useContext(MediaContext);
 
   const doDelete = async () => {
@@ -71,6 +69,7 @@ const MediaRow = ({file}) => {
 
 MediaRow.propTypes = {
   file: PropTypes.object.isRequired,
+  deleteMedia: PropTypes.func.isRequired,
 };
 
 export default MediaRow;
