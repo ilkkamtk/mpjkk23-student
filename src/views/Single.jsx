@@ -15,7 +15,7 @@ const Single = () => {
   const [owner, setOwner] = useState({username: ''});
 
   const {getUser} = useUser();
-  const {getFavourites} = useFavourite();
+  const {getFavourites, postFavourite} = useFavourite();
 
   const {state} = useLocation();
   const file = state.file;
@@ -56,6 +56,17 @@ const Single = () => {
   const fetchLikes = async () => {
     try {
       const likeInfo = await getFavourites(file.file_id);
+      console.log(likeInfo);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const doLike = async () => {
+    try {
+      const token = localStorage.getItem('userToken');
+      const data = {file_id: file.file_id};
+      const likeInfo = await postFavourite(data, token);
       console.log(likeInfo);
     } catch (error) {
       console.log(error.message);
@@ -103,7 +114,7 @@ const Single = () => {
           <Typography variant="body2">By: {owner.username}</Typography>
           <Typography variant="body2">Likes: 34</Typography>
           <ButtonGroup>
-            <Button>Like</Button>
+            <Button onClick={doLike}>Like</Button>
             <Button disabled={true}>Dislike</Button>
           </ButtonGroup>
         </CardContent>
