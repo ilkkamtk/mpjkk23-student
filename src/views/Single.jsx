@@ -13,9 +13,10 @@ import {useEffect, useState} from 'react';
 
 const Single = () => {
   const [owner, setOwner] = useState({username: ''});
+  const [likes, setLikes] = useState(0);
 
   const {getUser} = useUser();
-  const {getFavourites, postFavourite} = useFavourite();
+  const {getFavourites, postFavourite, deleteFavourite} = useFavourite();
 
   const {state} = useLocation();
   const file = state.file;
@@ -57,6 +58,7 @@ const Single = () => {
     try {
       const likeInfo = await getFavourites(file.file_id);
       console.log(likeInfo);
+      setLikes(likeInfo.length);
     } catch (error) {
       console.log(error.message);
     }
@@ -67,6 +69,16 @@ const Single = () => {
       const token = localStorage.getItem('userToken');
       const data = {file_id: file.file_id};
       const likeInfo = await postFavourite(data, token);
+      console.log(likeInfo);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const deleteLike = async () => {
+    try {
+      const token = localStorage.getItem('userToken');
+      const likeInfo = await deleteFavourite(file.file_id, token);
       console.log(likeInfo);
     } catch (error) {
       console.log(error.message);
@@ -112,10 +124,10 @@ const Single = () => {
         <CardContent>
           <Typography variant="body1">{allData.desc}</Typography>
           <Typography variant="body2">By: {owner.username}</Typography>
-          <Typography variant="body2">Likes: 34</Typography>
+          <Typography variant="body2">Likes: {likes}</Typography>
           <ButtonGroup>
             <Button onClick={doLike}>Like</Button>
-            <Button disabled={true}>Dislike</Button>
+            <Button onClick={deleteFavourite}>Dislike</Button>
           </ButtonGroup>
         </CardContent>
       </Card>
