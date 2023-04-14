@@ -9,11 +9,14 @@ import {
 import {useLocation} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
 import {useFavourite, useUser} from '../hooks/ApiHooks';
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
+import {MediaContext} from '../contexts/MediaContext';
 
 const Single = () => {
   const [owner, setOwner] = useState({username: ''});
   const [likes, setLikes] = useState(0);
+  const [userLike, setUserLike] = useState(false);
+  const {user} = useContext(MediaContext);
 
   const {getUser} = useUser();
   const {getFavourites, postFavourite, deleteFavourite} = useFavourite();
@@ -59,6 +62,9 @@ const Single = () => {
       const likeInfo = await getFavourites(file.file_id);
       console.log(likeInfo);
       setLikes(likeInfo.length);
+      likeInfo.forEach((like) => {
+        like.user_id === user.user_id && setUserLike(true);
+      });
     } catch (error) {
       console.log(error.message);
     }
@@ -126,8 +132,12 @@ const Single = () => {
           <Typography variant="body2">By: {owner.username}</Typography>
           <Typography variant="body2">Likes: {likes}</Typography>
           <ButtonGroup>
-            <Button onClick={doLike}>Like</Button>
-            <Button onClick={deleteLike}>Dislike</Button>
+            <Button onClick={doLike} disabled={userLike}>
+              Like
+            </Button>
+            <Button onClick={deleteLike} disabled={!userLike}>
+              Dislike
+            </Button>
           </ButtonGroup>
         </CardContent>
       </Card>
