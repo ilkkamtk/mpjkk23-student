@@ -101,6 +101,8 @@ const Single = () => {
     fetchLikes();
   }, [userLike]);
 
+  console.log(userLike);
+
   return (
     <>
       <Typography component="h1" variant="h3">
